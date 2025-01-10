@@ -1,31 +1,153 @@
+import random
+import re
 login_status=False
 user_id=""
 ids=["d06","s06"]
+# ids=[]
 marks=0
+account_no=[]
+balance=0
+email_id=[]
+
 uipd={"d06":"12","s06":"12"}
 def register():
     print("\n----Welcome To Registration Process----")
     name=input("Enter your name: ").lower()
-    dob=input("Enter your date of birth:")
+    n2=False
+    while n2!=True:
+        account=random.randint(1000000000,9999999999)
+        if account in account_no:
+            n2=False
+        else:
+            account_no.append(account)
+            n2=True
+    dob=input("Enter the dob in format(DD-MM-YYYY): ")
+    city=input("Enter your city: ")
+    
+    uname=input("Create a user name for your banking system: ")
+    
+    n4=False
+    while n4!=True:
+        print("Create a strong password\nIt should contain a upper case letter,,a special character and digit")
+        password=input("Create password: ")
+        if not re.search(r"[A-Z]", password):
+            print("Password must contain at least one uppercase letter.")
+            n4=False
+    
+    
+        elif not re.search(r"[a-z]", password):
+            print("Password must contain at least one lowercase letter.")
+            n4=False
+        
+        # Check for at least one digit
+        elif not re.search(r"[0-9]", password):
+            print("Password must contain at least one digit.")
+            n4=False
+        
+        # Check for at least one special character
+        elif not re.search(r"[!@#$%^&*_()\-+]", password):
+            print("Password must contain at least one special character (!@#$%^&*()-+).")
+            n4=False
+        else:
+            n4=True
+        
+    n=False
+    while n!=True:
+        balance=int(input("Enter the deposited amount: "))
+        if balance>=2000:
+            n=True
+        else:
+            print("minimum amount should be 2000")
+    n1=False
+    while n1!=True:
+        contact=input("\nEnter your contact number: ")
+        if len(contact)==10 and contact.isdigit()==True:
+            n1=True
+        else:
+            print("Enter a valid phone number\n")
+    
+    n3=False
+    while n3!=True:
+        email=input("\nEnter your email ID: ").lower()
+        if email in email_id  :
+            print("This email is already registered enter a new email id")
+            n3=False
+        elif email=="@gmail.com":
+            n3=False
+        elif "@gmail.com" in email:
+            n3=True
+        else:
+            print("Enter a valid email ")
+            n3=False
+
+
+    address=input("\nEnter your address: ")
+
+   
+def credit():
+    print("credit")
+    add=int(input("Enter the amount you want to credit in your account:  "))
+    balance=balance+add
+    print("The new balance=",balance)
+def debit():
+    print("debit")
+    n5=False
+    while n5!=True:
+        sub=int(input("Enter the amount you want to debit from your account:  "))
+        if sub>balance:
+            n5=False
+        else:
+            balance=balance-sum
+            print("The new balance=",balance)
+            n5=True
+def available_balance():
+   print("The available balance=",balance)
+
+def change_password():
+    print("change password")
+    n4=False
+    while n4!=True:
+        print("Create a strong password\nIt should contain a upper case letter,,a special character and digit")
+        password=input("Create a new  password: ")
+        if not re.search(r"[A-Z]", password):
+            print("Password must contain at least one uppercase letter.")
+            n4=False
+    
+    
+        elif not re.search(r"[a-z]", password):
+            print("Password must contain at least one lowercase letter.")
+            n4=False
+        
+        # Check for at least one digit
+        elif not re.search(r"[0-9]", password):
+            print("Password must contain at least one digit.")
+            n4=False
+        
+        # Check for at least one special character
+        elif not re.search(r"[!@#$%^&*_()\-+]", password):
+            print("Password must contain at least one special character (!@#$%^&*()-+).")
+            n4=False
+        else:
+            n4=True
+    print("Password is changed successfully")
 
 def show_profile():
     print("Show profile")
+    
 def transactions():
     print("transactions")
-def credit():
-    print("credit")
-def debit():
-    print("debit")
+
+    
 def transfer():
     print("transfer")
 def deactivate():
     print("deactivate")
-def available_balance():
-   print("balance")
+
 def update_profile():
     print("update profile")
-def change_password():
-    print("change password")
+
+        
+
 
 def facility():
     login_status=True
@@ -65,9 +187,10 @@ def login():
    while m!=True:
      user_id=input("\nEnter your user id: ")
      if user_id in ids:
-         p=input("Enter your password: ")
+         
          k=False
          while k!=True:
+             p=input("Enter your password: ")
              if uipd[user_id]==p:
                 login_status=True
                  
@@ -75,9 +198,10 @@ def login():
                 k=True
                 facility()
              else:
-                 p=input("Enter your password: ")
-                 m=False
-                 k=False
+                 print("Invalid password")
+                #  p=input("Enter your password: ")
+                #  m=False
+                #  k=False
      else:
          print("\nUser not exist go to register")
          m=True
