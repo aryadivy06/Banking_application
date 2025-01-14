@@ -16,14 +16,16 @@ usacc={}
 for i in range(len(o1)):
     ids.append(o1[i][0])
     uipd[o1[i][0]]=o1[i][1]
+account_no=[]
 out2="select account_number,user_name from users"
 cur.execute(out2)
 o2=cur.fetchall()
 for i in range(len(o2)):
    
     usacc[o2[i][1]]=o2[i][0]
+    account_no.append(o2[i][0])
 
-account_no=[]
+
 balance=0
 email_id=[]
 
@@ -263,7 +265,26 @@ def transactions():
 
     
 def transfer():
-    print("transfer")
+    p1=input("Enter the account number in which you want to transfer: ")
+    if p1 in account_no:
+        add=int(input("Enter the amount you want to transfer: "))
+        out3="select balance from users where account_number=%s"
+        cur.execute(out3,(p1,))
+        balance=cur.fetchone()
+        # print(balance)
+        new_balance=balance[0]+add
+        out4="UPDATE users SET balance = %s WHERE account_number = %s"
+        cur.execute(out4, (new_balance, user_id))  
+        con.commit()
+        out3="select balance from users where user_name=%s"
+        cur.execute(out3,(user_id,))
+        balance=cur.fetchone()
+        # print(balance)
+        new_balance=balance[0]-add
+        out4="UPDATE users SET balance = %s WHERE user_name = %s"
+        cur.execute(out4, (new_balance, user_id))  
+        con.commit()
+        
 
 # This function is for deactivating the account
 def deactivate():

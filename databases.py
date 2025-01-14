@@ -8,30 +8,30 @@ cur = con.cursor()
 
 #This is to create table which stores the user information
 
-# sql1="""CREATE TABLE users (
-#     name VARCHAR(100),
-#     account_number VARCHAR(10) PRIMARY KEY,
-#     dob DATE,
-#     city VARCHAR(50),
-#     user_name VARCHAR(50) unique,
-#     password VARCHAR(50),
-#     balance FLOAT,
-#     contact VARCHAR(10),
-#     email VARCHAR(100),
-#     address TEXT,
-#     status VARCHAR(10) DEFAULT 'active'
-# );"""
-# cur.execute(sql1)
+sql1="""CREATE TABLE users (
+    name VARCHAR(100),
+    account_number VARCHAR(10) PRIMARY KEY,
+    dob DATE,
+    city VARCHAR(50),
+    user_name VARCHAR(50) unique,
+    password VARCHAR(50),
+    balance FLOAT,
+    contact VARCHAR(10),
+    email VARCHAR(100),
+    address TEXT,
+    status VARCHAR(10) DEFAULT 'active'
+);"""
+cur.execute(sql1)
 
-# #This is to create table which stores the login user  information
+#This is to create table which stores the login user  information
 
-# sql2="""CREATE TABLE login (
-#     account_number VARCHAR(10),
-#     user_name VARCHAR(20) PRIMARY KEY,
+sql2="""CREATE TABLE login (
+    account_number VARCHAR(10),
+    user_name VARCHAR(20) PRIMARY KEY,
     
-#     password VARCHAR(50)
-# );"""
-# cur.execute(sql2)
+    password VARCHAR(50)
+);"""
+cur.execute(sql2)
 
 #This is to create table which stores the transaction information
 
