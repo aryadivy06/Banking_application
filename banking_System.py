@@ -155,7 +155,7 @@ def credit():
             con.commit()
             current_date = datetime.now()
             today= current_date.strftime("%Y-%m-%d")
-            o2="insert into transactions (account_number,transaction_type,amount,transaction_date) value(%s,%s,%s.%s)"
+            o2="insert into transactions (account_number,transaction_type,amount,transaction_date) value(%s,%s,%s,%s)"
             cur.execute(o2,(usacc[user_id],"credit",add,today))
             con.commit()
             
@@ -180,7 +180,7 @@ def debit():
             con.commit()
             current_date = datetime.now()
             today= current_date.strftime("%Y-%m-%d")
-            o2="insert into transactions (account_number,transaction_type,amount,transaction_date) value(%s,%s,%s.%s)"
+            o2="insert into transactions (account_number,transaction_type,amount,transaction_date) value(%s,%s,%s,%s)"
             cur.execute(o2,(usacc[user_id],"debit",sub,today))
             con.commit()
             n5=True
@@ -261,7 +261,10 @@ def transactions():
     o3="select * from transactions where account_number=%s"
     cur.execute(o3,(usacc[user_id],))
     o8=cur.fetchall()
-    print(o8)
+    for i in o8:
+        print(f"Account No.:{i[0]},Transaction type:{i[1]},Amount:{i[2]},Date:{i[3]}")
+    print("\n")
+
 
     
 def transfer():
