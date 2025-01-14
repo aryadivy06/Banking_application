@@ -2,7 +2,7 @@ import random
 import re
 from datetime import datetime
 import mysql.connector as my
-con = my.connect(host = "localhost",port="3306", user="root",password = "@aryadivy06",database="banking_system")
+con = my.connect(host = "localhost",port="3306", user="root",password = "user_password",database="banking_system")
 cur = con.cursor()
 login_status=False
 status="active"
